@@ -1,0 +1,125 @@
+.theme-toggle {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: var(--spacing-xs);
+  border-radius: var(--radius-medium);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.theme-toggle:hover {
+  background: var(--bg-hover);
+  transform: scale(1.05);
+}
+
+.theme-toggle:active {
+  transform: scale(0.95);
+}
+
+.theme-toggle-track {
+  width: 60px;
+  height: 30px;
+  background: var(--border-light);
+  border-radius: 15px;
+  position: relative;
+  transition: all 0.3s ease;
+  border: 2px solid var(--border-medium);
+}
+
+.dark-theme .theme-toggle-track {
+  background: var(--border-medium);
+  border-color: var(--border-light);
+}
+
+.theme-toggle-thumb {
+  width: 26px;
+  height: 26px;
+  background: var(--gradient-mixed);
+  border-radius: 50%;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--shadow-soft);
+}
+
+.theme-toggle-thumb.dark {
+  transform: translateX(30px);
+  background: var(--gradient-blue);
+}
+
+.theme-toggle-thumb.light {
+  transform: translateX(0px);
+  background: var(--gradient-pink);
+}
+
+.theme-icon {
+  font-size: 12px;
+  line-height: 1;
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.2));
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .theme-toggle {
+    padding: 2px;
+  }
+  
+  .theme-toggle-track {
+    width: 50px;
+    height: 25px;
+  }
+  
+  .theme-toggle-thumb {
+    width: 21px;
+    height: 21px;
+  }
+  
+  .theme-toggle-thumb.dark {
+    transform: translateX(25px);
+  }
+  
+  .theme-icon {
+    font-size: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .theme-toggle-track {
+    width: 45px;
+    height: 22px;
+  }
+  
+  .theme-toggle-thumb {
+    width: 18px;
+    height: 18px;
+  }
+  
+  .theme-toggle-thumb.dark {
+    transform: translateX(23px);
+  }
+  
+  .theme-icon {
+    font-size: 9px;
+  }
+}
+
+/* Animation for smooth theme transition */
+.theme-toggle * {
+  transition: all 0.3s ease;
+}
+
+/* Focus styles for accessibility */
+.theme-toggle:focus {
+  outline: 2px solid var(--primary-blue);
+  outline-offset: 2px;
+}
+
+.theme-toggle:focus:not(:focus-visible) {
+  outline: none;
+}

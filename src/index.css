@@ -1,13 +1,250 @@
+/* CSS Variables for the Orkut-inspired theme */
+:root {
+  /* Primary Colors */
+  --primary-blue: #4A90E2;
+  --primary-pink: #E91E63;
+  --primary-white: #FFFFFF;
+  
+  /* Gradient Colors */
+  --gradient-blue: linear-gradient(135deg, #4A90E2 0%, #357ABD 100%);
+  --gradient-pink: linear-gradient(135deg, #E91E63 0%, #C2185B 100%);
+  --gradient-mixed: linear-gradient(135deg, #4A90E2 0%, #E91E63 100%);
+  --gradient-soft: linear-gradient(135deg, #F8F9FA 0%, #E3F2FD 100%);
+  
+  /* Light Theme Colors */
+  --bg-primary: #F8F9FA;
+  --bg-secondary: #FFFFFF;
+  --bg-card: #FFFFFF;
+  --bg-hover: #F5F5F5;
+  
+  --text-primary: #2C3E50;
+  --text-secondary: #6C757D;
+  --text-light: #ADB5BD;
+  --text-white: #FFFFFF;
+  
+  --border-light: #E9ECEF;
+  --border-medium: #DEE2E6;
+  --border-accent: #4A90E2;
+  
+  --shadow-soft: 0 2px 8px rgba(74, 144, 226, 0.1);
+  --shadow-medium: 0 4px 16px rgba(74, 144, 226, 0.15);
+  --shadow-strong: 0 8px 32px rgba(74, 144, 226, 0.2);
+  
+  /* Border Radius */
+  --radius-small: 6px;
+  --radius-medium: 12px;
+  --radius-large: 20px;
+  
+  /* Spacing */
+  --spacing-xs: 4px;
+  --spacing-sm: 8px;
+  --spacing-md: 16px;
+  --spacing-lg: 24px;
+  --spacing-xl: 32px;
+}
+
+/* Dark Theme Variables */
+.dark-theme {
+  /* Dark Theme Colors */
+  --bg-primary: #0F0F0F;
+  --bg-secondary: #1A1A1A;
+  --bg-card: #1F1F1F;
+  --bg-hover: #2A2A2A;
+  
+  --text-primary: #F0F0F0;
+  --text-secondary: #C0C0C0;
+  --text-light: #909090;
+  --text-white: #FFFFFF;
+  
+  --border-light: #333333;
+  --border-medium: #404040;
+  --border-accent: #5BA0F2;
+  
+  --shadow-soft: 0 2px 8px rgba(0, 0, 0, 0.4);
+  --shadow-medium: 0 4px 16px rgba(0, 0, 0, 0.5);
+  --shadow-strong: 0 8px 32px rgba(0, 0, 0, 0.6);
+  
+  /* Dark Theme Gradients - More vibrant and adapted */
+  --gradient-blue: linear-gradient(135deg, #5BA0F2 0%, #4A90E2 100%);
+  --gradient-pink: linear-gradient(135deg, #FF4081 0%, #E91E63 100%);
+  --gradient-mixed: linear-gradient(135deg, #5BA0F2 0%, #FF4081 100%);
+  --gradient-soft: linear-gradient(135deg, #0F0F0F 0%, #1A1A1A 100%);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+/* Smooth transitions for theme changes */
+*, *::before, *::after {
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
 body {
   margin: 0;
+  padding: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  line-height: 1.6;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+  background: var(--bg-hover);
+  padding: 2px 6px;
+  border-radius: var(--radius-small);
+  color: var(--primary-blue);
+}
+
+/* Global Button Styles */
+.btn {
+  padding: var(--spacing-sm) var(--spacing-md);
+  border: none;
+  border-radius: var(--radius-medium);
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-sm);
+}
+
+.btn-primary {
+  background: var(--gradient-blue);
+  color: var(--text-white);
+  box-shadow: var(--shadow-soft);
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-medium);
+}
+
+.btn-secondary {
+  background: var(--gradient-pink);
+  color: var(--text-white);
+  box-shadow: var(--shadow-soft);
+}
+
+.btn-secondary:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-medium);
+}
+
+.btn-outline {
+  background: transparent;
+  color: var(--primary-blue);
+  border: 2px solid var(--primary-blue);
+}
+
+.btn-outline:hover {
+  background: var(--primary-blue);
+  color: var(--text-white);
+}
+
+/* Card Styles */
+.card {
+  background: var(--bg-card);
+  border-radius: var(--radius-large);
+  box-shadow: var(--shadow-soft);
+  border: 1px solid var(--border-light);
+  transition: all 0.3s ease;
+}
+
+.card:hover {
+  box-shadow: var(--shadow-medium);
+  transform: translateY(-2px);
+}
+
+/* Input Styles */
+.input {
+  padding: var(--spacing-sm) var(--spacing-md);
+  border: 2px solid var(--border-light);
+  border-radius: var(--radius-medium);
+  background: var(--bg-secondary);
+  color: var(--text-primary);
+  transition: all 0.3s ease;
+  font-size: 14px;
+}
+
+.input:focus {
+  outline: none;
+  border-color: var(--primary-blue);
+  box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.1);
+}
+
+/* Scrollbar Styling */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-hover);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--gradient-blue);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--gradient-pink);
+}
+
+/* Mobile-specific improvements */
+@media (max-width: 768px) {
+  body {
+    font-size: 14px;
+  }
+  
+  .btn {
+    padding: var(--spacing-sm) var(--spacing-sm);
+    font-size: 14px;
+  }
+  
+  .input {
+    font-size: 16px; /* Prevents zoom on iOS */
+  }
+  
+  .card {
+    border-radius: var(--radius-medium);
+  }
+}
+
+@media (max-width: 480px) {
+  body {
+    font-size: 13px;
+  }
+  
+  .btn {
+    padding: var(--spacing-xs) var(--spacing-sm);
+    font-size: 13px;
+  }
+  
+  .card {
+    border-radius: var(--radius-small);
+  }
+}
+
+/* Touch-friendly interactions */
+@media (hover: none) and (pointer: coarse) {
+  .btn:hover,
+  .action-button:hover,
+  .card:hover {
+    transform: none;
+  }
+  
+  .btn:active,
+  .action-button:active {
+    transform: scale(0.98);
+  }
 }
