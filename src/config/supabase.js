@@ -1,7 +1,7 @@
 // Supabase configuration
 export const SUPABASE_CONFIG = {
-  url: process.env.REACT_APP_SUPABASE_URL || 'https://bovnlcwotthmvqrcpbsg.supabase.co',
-  anonKey: process.env.REACT_APP_SUPABASE_ANON_KEY || 'sb_publishable_jERJWzywqD9JQfqIX32ZpQ_mKWYqpnn',
+  url: 'https://bovnlcwotthmvqrcpbsg.supabase.co',
+  anonKey: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJvdm5sY3dvdHRobXZxcmNwYnNnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTcxMzY1MzgsImV4cCI6MjA3MjcxMjUzOH0.yr9hPr7rUmsf__TUUdrQa_aiaKJvSl94QuuTcoBdAzI',
   bucket: 'posts_images'
 };
 
