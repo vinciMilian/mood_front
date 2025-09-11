@@ -1,4 +1,4 @@
-const API_BASE_URL = 'http://localhost:3001/api/auth';
+const API_BASE_URL = 'https://mood-back.vercel.app/api/auth';
 
 // Generic API function for making requests
 const apiRequest = async (endpoint, options = {}) => {
