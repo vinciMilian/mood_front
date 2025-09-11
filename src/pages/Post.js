@@ -243,7 +243,16 @@ function Post() {
                 <article className="post-card">
                     <div className="post-header">
                         <div className="post-avatar">
-                            {getAuthorInitial(post.author)}
+                            {post.user_image_url ? (
+                                <img 
+                                    src={post.user_image_url}
+                                    alt="Avatar"
+                                    className="avatar-img"
+                                    onError={e => { e.target.style.display = 'none'; }}
+                                />
+                            ) : (
+                                getAuthorInitial(post.author)
+                            )}
                         </div>
                         <div className="post-info">
                             <div className="post-author">{post.author}</div>

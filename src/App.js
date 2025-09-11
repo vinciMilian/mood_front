@@ -7,6 +7,7 @@ import Login from './pages/Login';
 import Register from './pages/Register';
 import Home from './pages/Home';
 import Post from './pages/Post';
+import Profile from './pages/Profile';
 import './App.css';
 
 // Componente para rotas protegidas
@@ -70,6 +71,16 @@ function AppRoutes() {
         element={
           <ProtectedRoute>
             <Post />
+          </ProtectedRoute>
+        } 
+      />
+
+      {/* Rota para perfil de usuário */}
+      <Route 
+        path="/profile/:userId" 
+        element={
+          <ProtectedRoute>
+            <Profile />
           </ProtectedRoute>
         } 
       />

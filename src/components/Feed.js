@@ -1,9 +1,11 @@
 import React, { useState, useEffect, useCallback, useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
 import { useUser } from '../contexts/UserContext';
 import { postsAPI, likesAPI, commentsAPI, storageAPI } from '../service/api';
 
 function Feed({ user, newPost, setNewPost, onPostSubmit }) {
+    const navigate = useNavigate();
     const { user: authUser } = useAuth();
     const { getUserDisplayName } = useUser();
     const [posts, setPosts] = useState([]);
@@ -29,7 +31,13 @@ function Feed({ user, newPost, setNewPost, onPostSubmit }) {
     };
 
     const getAuthorInitial = (authorName) => {
-        return authorName.charAt(0).toUpperCase();
+        return authorName?.charAt(0).toUpperCase() || '?';
+    } 
+
+    const handleAuthorClick = (post) => {
+        if (post.usersData?.user_id_reg) {
+            navigate(`/profile/${post.usersData.user_id_reg}`);
+        }
     };
 
     // Format date to relative time
@@ -136,6 +144,7 @@ function Feed({ user, newPost, setNewPost, onPostSubmit }) {
                 const newPosts = response.data.map(post => ({
                     ...post,
                     author: post.usersData?.displayName || 'Usuário',
+                    user_image_bucket: post.usersData?.user_image_bucket || null,
                     time: formatTime(post.created_at),
                     content: post.description
                 }));
@@ -510,10 +519,25 @@ function Feed({ user, newPost, setNewPost, onPostSubmit }) {
                             <article key={post.id} className="post-card">
                                 <div className="post-header">
                                     <div className="post-avatar">
-                                        {getAuthorInitial(post.author)}
+                                        {post.user_image_url ? (
+                                            <img 
+                                                src={post.user_image_url}
+                                                alt="Avatar"
+                                                className="avatar-img"
+                                                onError={e => { e.target.style.display = 'none'; }}
+                                            />
+                                        ) : (
+                                            getAuthorInitial(post.author)
+                                        )}
                                     </div>
                                     <div className="post-info">
-                                        <div className="post-author">{post.author}</div>
+                                        <div 
+                                            className="post-author" 
+                                            onClick={() => handleAuthorClick(post)}
+                                            style={{ cursor: 'pointer' }}
+                                        >
+                                            {post.author}
+                                        </div>
                                         <div className="post-time">{post.time}</div>
                                     </div>
                                 </div>

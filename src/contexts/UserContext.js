@@ -27,6 +27,9 @@ export const UserProvider = ({ children }) => {
       console.log('UserContext: Fetching user data with token:', token ? 'present' : 'missing');
       const response = await authAPI.getUser(token);
       console.log('UserContext: API response:', response);
+      console.log('UserContext: userData received:', response.user?.userData);
+      console.log('UserContext: user_image_url in userData:', response.user?.userData?.user_image_url);
+      console.log('UserContext: user_image_bucket in userData:', response.user?.userData?.user_image_bucket);
       
       if (response.success && response.user?.userData) {
         console.log('UserContext: Setting userData:', response.user.userData);
@@ -78,6 +81,32 @@ export const UserProvider = ({ children }) => {
       month: 'long',
       day: 'numeric'
     });
+  };
+
+  // Get user profile image URL from bucket
+  const getUserImageUrl = async () => {
+    if (!userData?.user_image_bucket) return null;
+    
+    try {
+      const token = localStorage.getItem('accessToken');
+      if (token) {
+        const { createSupabaseClient, SUPABASE_CONFIG } = await import('../config/supabase');
+        const supabase = createSupabaseClient(token);
+
+        const { data, error } = await supabase.storage
+          .from('user_image')
+          .createSignedUrl(userData.user_image_bucket, 3600);
+
+        if (error) {
+          console.error('Error creating signed URL:', error);
+          return null;
+        }
+        return data.signedUrl;
+      }
+    } catch (err) {
+      console.error('Error loading user image URL:', err);
+    }
+    return null;
   };
 
   // Initialize user data when auth is ready

@@ -1,4 +1,31 @@
-const API_BASE_URL = 'https://mood-back.vercel.app/api/auth';
+const API_BASE_URL = 'http://localhost:3001/api/auth';
+
+// Generic API function for making requests
+const apiRequest = async (endpoint, options = {}) => {
+  const url = `${API_BASE_URL}${endpoint}`;
+  const defaultOptions = {
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  };
+
+  // Add authorization header if token is available
+  const token = localStorage.getItem('accessToken');
+  if (token) {
+    defaultOptions.headers['Authorization'] = `Bearer ${token}`;
+  }
+
+  const response = await fetch(url, {
+    ...defaultOptions,
+    ...options,
+    headers: {
+      ...defaultOptions.headers,
+      ...options.headers,
+    },
+  });
+
+  return response.json();
+};
 
 export const authAPI = {
   signup: async (displayName, email, password) => {
@@ -266,3 +293,33 @@ export const likesAPI = {
     return response.json();
   }
 };
+
+// Profile API functions
+export const profileAPI = {
+  getUserProfile: async (userId) => {
+    return apiRequest(`/profile/${userId}`);
+  },
+
+  uploadProfileImage: async (imageFile) => {
+    const formData = new FormData();
+    formData.append('image', imageFile);
+
+    const token = localStorage.getItem('accessToken');
+    const response = await fetch(`${API_BASE_URL}/profile/upload-image`, {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${token}`
+        // NÃO defina 'Content-Type' aqui!
+      },
+      body: formData,
+    });
+    return response.json();
+  },
+
+  getProfileImageUrl: async (fileName) => {
+    return apiRequest(`/profile/image/${fileName}`);
+  }
+};
+
+// Export the generic API function as default
+export default apiRequest;

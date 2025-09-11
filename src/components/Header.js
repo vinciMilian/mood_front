@@ -1,10 +1,12 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { searchAPI } from '../service/api';
+import { useUser } from '../contexts/UserContext';
 import ThemeToggle from './ThemeToggle';
 
 function Header({ user, onLogout }) {
     const navigate = useNavigate();
+    const { userData } = useUser();
     const [searchQuery, setSearchQuery] = useState('');
     const [searchResults, setSearchResults] = useState({ posts: [], users: [] });
     const [showResults, setShowResults] = useState(false);
@@ -13,8 +15,13 @@ function Header({ user, onLogout }) {
     const resultsRef = useRef(null);
 
     const getUserInitial = () => {
-        const name = user.userData?.displayName || user.name || user.email?.split('@')[0] || 'U';
+        const name = userData?.displayName || user.userData?.displayName || user.name || user.email?.split('@')[0] || 'U';
         return name.charAt(0).toUpperCase();
+    };
+
+    // Foto de perfil do usuário logado
+    const getProfileImageUrl = () => {
+        return userData?.user_image_url || user?.user_image_url || null;
     };
 
     // Handle search
@@ -84,10 +91,9 @@ function Header({ user, onLogout }) {
 
     return (
         <header className="mood-header">
-            <div className="header-container">
+            <div className="header-container" style={{ height: '30px' }}>
                 <div className="logo-section">
-                    <div className="logo-icon">M</div>
-                    <a href="#" className="mood-logo">Mood</a>
+                    <a href="#" className="mood-logo">mood</a>
                 </div>
                 
                 <div className="search-section" ref={resultsRef}>
@@ -97,6 +103,8 @@ function Header({ user, onLogout }) {
                         placeholder="Pesquisar no Mood..."
                         value={searchQuery}
                         onChange={handleSearchChange}
+
+                        style={{ height: '30px', color: 'black' }}
                     />
                     
                     {/* Search Results Dropdown */}
@@ -166,7 +174,11 @@ function Header({ user, onLogout }) {
                 <div className="user-section">
                     <ThemeToggle />
                     <div className="user-avatar">
-                        {getUserInitial()}
+                        {getProfileImageUrl() ? (
+                            <img src={getProfileImageUrl()} alt="Foto de perfil" className="profile-image" />
+                        ) : (
+                            getUserInitial()
+                        )}
                     </div>
                     <button className="logout-btn" onClick={onLogout}>
                         Sair
