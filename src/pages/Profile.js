@@ -3,7 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
 import { useUser } from '../contexts/UserContext';
 import { useTheme } from '../contexts/ThemeContext';
-import { profileAPI, postsAPI } from '../service/api';
+import { profileAPI, postsAPI, userAPI } from '../service/api';
 import './profile.scss';
 
 const Profile = () => {
@@ -18,6 +18,8 @@ const Profile = () => {
   const [loading, setLoading] = useState(true);
   const [uploadingImage, setUploadingImage] = useState(false);
   const [isOwnProfile, setIsOwnProfile] = useState(false);
+  const [editingName, setEditingName] = useState(false);
+  const [newDisplayName, setNewDisplayName] = useState('');
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
@@ -52,6 +54,36 @@ const Profile = () => {
     } finally {
       setLoading(false);
     }
+  };
+
+  // Edit display name functions
+  const handleEditName = () => {
+    setNewDisplayName(profileUser.displayName);
+    setEditingName(true);
+  };
+
+  const handleSaveName = async () => {
+    if (newDisplayName.trim() && user?.id) {
+      try {
+        const response = await userAPI.updateDisplayName(user.id, newDisplayName.trim());
+        if (response.success) {
+          setEditingName(false);
+          // Update profile user data
+          setProfileUser(prev => ({
+            ...prev,
+            displayName: newDisplayName.trim()
+          }));
+        }
+      } catch (error) {
+        console.error('Error updating display name:', error);
+        alert('Erro ao atualizar nome. Tente novamente.');
+      }
+    }
+  };
+
+  const handleCancelEdit = () => {
+    setEditingName(false);
+    setNewDisplayName('');
   };
 
   const handleImageUpload = async (event) => {
@@ -161,7 +193,48 @@ const Profile = () => {
           </div>
           
           <div className="profile-details">
-            <h1 className="profile-name">{profileUser.displayName}</h1>
+            {isOwnProfile && editingName ? (
+              <div className="edit-name-form">
+                <input
+                  type="text"
+                  value={newDisplayName}
+                  onChange={(e) => setNewDisplayName(e.target.value)}
+                  className="edit-name-input"
+                  placeholder="Novo nome"
+                  autoFocus
+                />
+                <div className="edit-name-actions">
+                  <button 
+                    type="button" 
+                    className="btn btn-primary"
+                    onClick={handleSaveName}
+                  >
+                    Salvar
+                  </button>
+                  <button 
+                    type="button" 
+                    className="btn btn-secondary"
+                    onClick={handleCancelEdit}
+                  >
+                    Cancelar
+                  </button>
+                </div>
+              </div>
+            ) : (
+              <div className="profile-name-container">
+                <h1 className="profile-name">{profileUser.displayName}</h1>
+                {isOwnProfile && (
+                  <button 
+                    type="button" 
+                    className="edit-name-btn"
+                    onClick={handleEditName}
+                    title="Editar nome"
+                  >
+                    ✏️
+                  </button>
+                )}
+              </div>
+            )}
             <p className="profile-joined">
               Membro desde {formatDate(profileUser.created_at)}
             </p>

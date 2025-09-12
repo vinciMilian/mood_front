@@ -2,7 +2,7 @@ import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
 import { useUser } from '../contexts/UserContext';
-import { postsAPI, likesAPI, commentsAPI, storageAPI } from '../service/api';
+import { postsAPI, likesAPI, commentsAPI, storageAPI, adminAPI, userAPI } from '../service/api';
 
 function Feed({ user, newPost, setNewPost, onPostSubmit }) {
     const navigate = useNavigate();
@@ -24,6 +24,7 @@ function Feed({ user, newPost, setNewPost, onPostSubmit }) {
     const [showComments, setShowComments] = useState({});
     const [loadingComments, setLoadingComments] = useState({});
     const [imageUrls, setImageUrls] = useState({});
+    const [isAdmin, setIsAdmin] = useState(false);
 
     const getUserInitial = () => {
         const name = getUserDisplayName();
@@ -39,6 +40,31 @@ function Feed({ user, newPost, setNewPost, onPostSubmit }) {
             navigate(`/profile/${post.usersData.user_id_reg}`);
         }
     };
+
+    // Check if user is admin
+    const checkAdminStatus = () => {
+        if (authUser?.id) {
+            const adminId = '8edd0212-1a9e-4a5a-a361-2f4411f32e26';
+            setIsAdmin(authUser.id === adminId);
+        }
+    };
+
+    // Pin/Unpin post
+    const handlePinPost = async (postId, isPinned) => {
+        try {
+            const response = isPinned 
+                ? await adminAPI.unpinPost(postId)
+                : await adminAPI.pinPost(postId);
+            
+            if (response.success) {
+                // Refresh posts to show updated pin status
+                fetchPosts(true);
+            }
+        } catch (error) {
+            console.error('Error pinning/unpinning post:', error);
+        }
+    };
+
 
     // Format date to relative time
     const formatTime = (dateString) => {
@@ -376,6 +402,11 @@ function Feed({ user, newPost, setNewPost, onPostSubmit }) {
         fetchPosts(true);
     }, []);
 
+    // Check admin status when authUser changes
+    useEffect(() => {
+        checkAdminStatus();
+    }, [authUser]);
+
     // Check user likes when posts change
     useEffect(() => {
         checkUserLikes();
@@ -448,12 +479,17 @@ function Feed({ user, newPost, setNewPost, onPostSubmit }) {
                         <div className="user-avatar-small">
                             {getUserInitial()}
                         </div>
-                        <textarea
-                            className="post-textarea"
-                            placeholder="No que você está pensando?"
-                            value={newPost}
-                            onChange={(e) => setNewPost(e.target.value)}
-                        />
+                        <div className="post-input-content">
+                            <div className="user-name-display">
+                                <span className="user-name">{getUserDisplayName()}</span>
+                            </div>
+                            <textarea
+                                className="post-textarea"
+                                placeholder="No que você está pensando?"
+                                value={newPost}
+                                onChange={(e) => setNewPost(e.target.value)}
+                            />
+                        </div>
                     </div>
                     
                     {/* Image Preview */}
@@ -516,30 +552,44 @@ function Feed({ user, newPost, setNewPost, onPostSubmit }) {
                 ) : (
                     <>
                         {posts.map(post => (
-                            <article key={post.id} className="post-card">
+                            <article key={post.id} className={`post-card ${post.is_pinned ? 'pinned' : ''}`}>
                                 <div className="post-header">
-                                    <div className="post-avatar">
-                                        {post.user_image_url ? (
-                                            <img 
-                                                src={post.user_image_url}
-                                                alt="Avatar"
-                                                className="avatar-img"
-                                                onError={e => { e.target.style.display = 'none'; }}
-                                            />
-                                        ) : (
-                                            getAuthorInitial(post.author)
-                                        )}
-                                    </div>
-                                    <div className="post-info">
-                                        <div 
-                                            className="post-author" 
-                                            onClick={() => handleAuthorClick(post)}
-                                            style={{ cursor: 'pointer' }}
-                                        >
-                                            {post.author}
+                                    <div className="post-user-info">
+                                        <div className="post-avatar">
+                                            {post.user_image_url ? (
+                                                <img 
+                                                    src={post.user_image_url}
+                                                    alt="Avatar"
+                                                    className="avatar-img"
+                                                    onError={e => { e.target.style.display = 'none'; }}
+                                                />
+                                            ) : (
+                                                getAuthorInitial(post.author)
+                                            )}
                                         </div>
-                                        <div className="post-time">{post.time}</div>
+                                        <div className="post-info">
+                                            <div 
+                                                className="post-author" 
+                                                onClick={() => handleAuthorClick(post)}
+                                                style={{ cursor: 'pointer' }}
+                                            >
+                                                {post.author}
+                                                {post.usersData?.user_email === 'plsmartins10@gmail.com' && (
+                                                    <span className="admin-tag">Admin</span>
+                                                )}
+                                            </div>
+                                            <div className="post-time">{post.time}</div>
+                                        </div>
                                     </div>
+                                    {isAdmin && (
+                                        <button 
+                                            className="pin-btn"
+                                            onClick={() => handlePinPost(post.id, post.is_pinned)}
+                                            title={post.is_pinned ? 'Desfixar post' : 'Fixar post'}
+                                        >
+                                            {post.is_pinned ? '📌' : '📍'}
+                                        </button>
+                                    )}
                                 </div>
                                 <div className="post-content">
                                     {post.content}

@@ -321,5 +321,52 @@ export const profileAPI = {
   }
 };
 
+// Admin API functions
+export const adminAPI = {
+  checkIsAdmin: async (userId) => {
+    return apiRequest(`/user/${userId}/is-admin`);
+  },
+
+  pinPost: async (postId) => {
+    const token = localStorage.getItem('accessToken');
+    const response = await fetch(`${API_BASE_URL}/posts/${postId}/pin`, {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${token}`,
+        'Content-Type': 'application/json'
+      }
+    });
+    return response.json();
+  },
+
+  unpinPost: async (postId) => {
+    const token = localStorage.getItem('accessToken');
+    const response = await fetch(`${API_BASE_URL}/posts/${postId}/unpin`, {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${token}`,
+        'Content-Type': 'application/json'
+      }
+    });
+    return response.json();
+  }
+};
+
+// User API functions
+export const userAPI = {
+  updateDisplayName: async (userId, displayName) => {
+    const token = localStorage.getItem('accessToken');
+    const response = await fetch(`${API_BASE_URL}/user-data/${userId}/display-name`, {
+      method: 'PUT',
+      headers: {
+        'Authorization': `Bearer ${token}`,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ displayName })
+    });
+    return response.json();
+  }
+};
+
 // Export the generic API function as default
 export default apiRequest;
