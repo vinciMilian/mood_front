@@ -30,13 +30,17 @@ function Home() {
                     <UserCard user={user} />
                 </aside>
 
-                <Feed 
-                    user={user}
-                    newPost={newPost}
-                    setNewPost={setNewPost}
-                />
+                <section className="main-feed">
+                    <Feed 
+                        user={user}
+                        newPost={newPost}
+                        setNewPost={setNewPost}
+                    />
+                </section>
 
-                <RightSidebar />
+                <aside className="right-sidebar">
+                    <RightSidebar />
+                </aside>
             </main>
         </div>
     );

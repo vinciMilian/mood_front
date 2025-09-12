@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
 
 * {
     margin: 0;
@@ -10,6 +10,7 @@ body {
     font-family: 'Inter', sans-serif;
     background: var(--bg-primary);
     color: var(--text-primary);
+    line-height: 1.6;
 }
 
 .mood-app {
@@ -17,14 +18,16 @@ body {
     display: flex;
     flex-direction: column;
 
-    // Header
+    // Header - Modern & Clean
     .mood-header {
-        background: rgb(24, 106, 133);
-        box-shadow: var(--shadow-soft);
+        background: var(--bg-card);
+        border-bottom: 1px solid var(--border-light);
+        box-shadow: var(--shadow-sm);
         position: sticky;
         top: 0;
         z-index: 1000;
-        padding: 0.75rem 0;
+        padding: var(--spacing-4) 0;
+        backdrop-filter: blur(10px);
 
         .header-container {
             max-width: 1200px;
@@ -32,61 +35,71 @@ body {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 0 1rem;
+            padding: 0 var(--spacing-4);
+            gap: var(--spacing-4);
 
             .logo-section {
                 display: flex;
                 align-items: center;
-                gap: 0.5rem;
+                gap: var(--spacing-2);
 
                 .mood-logo {
-                    font-size: 2rem;
-                    font-weight: 700;
-                    color: white;
+                    font-size: var(--font-size-2xl);
+                    font-weight: 800;
+                    background: var(--gradient-mixed);
+                    -webkit-background-clip: text;
+                    -webkit-text-fill-color: transparent;
+                    background-clip: text;
                     text-decoration: none;
                     letter-spacing: -0.5px;
-                    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+                    transition: all var(--transition-fast);
+                    
+                    &:hover {
+                        transform: scale(1.05);
+                    }
                 }
 
                 .logo-icon {
                     width: 32px;
                     height: 32px;
                     background: var(--gradient-mixed);
-                    border-radius: 8px;
+                    border-radius: var(--radius-lg);
                     display: flex;
                     align-items: center;
                     justify-content: center;
                     color: white;
-                    font-weight: bold;
-                    font-size: 1.2rem;
+                    font-weight: 700;
+                    font-size: var(--font-size-lg);
+                    box-shadow: var(--shadow-sm);
                 }
             }
 
             .search-section {
                 flex: 1;
                 max-width: 400px;
-                margin: 0 2rem;
+                margin: 0 var(--spacing-4);
                 position: relative;
 
                 .search-bar {
                     width: 100%;
-                    padding: 0.75rem 1rem;
-                    border: none;
-                    border-radius: 25px;
-                    background: rgba(255, 255, 255, 0.9);
-                    font-size: 0.9rem;
-                    transition: all 0.3s ease;
-                    backdrop-filter: blur(10px);
+                    padding: var(--spacing-3) var(--spacing-4);
+                    border: 1px solid var(--border-light);
+                    border-radius: var(--radius-full);
+                    background: var(--bg-subtle);
+                    font-size: var(--font-size-sm);
+                    transition: all var(--transition-fast);
                     color: var(--text-primary);
+                    box-shadow: var(--shadow-xs);
 
                     &:focus {
                         outline: none;
-                        background: white;
-                        box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.3);
+                        background: var(--bg-card);
+                        border-color: var(--primary-blue);
+                        box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
                     }
 
                     &::placeholder {
-                        color: var(--text-secondary);
+                        color: var(--text-light);
                     }
                 }
 
@@ -181,68 +194,77 @@ body {
             .user-section {
                 display: flex;
                 align-items: center;
-                gap: 1rem;
+                gap: var(--spacing-3);
 
                 .user-avatar {
                     width: 40px;
                     height: 40px;
-                    border-radius: 50%;
-                    background: var(--gradient-blue);
+                    border-radius: var(--radius-full);
+                    background: var(--gradient-mixed);
                     display: flex;
                     align-items: center;
                     justify-content: center;
                     color: white;
                     font-weight: 600;
                     cursor: pointer;
-                    transition: all 0.3s ease;
-                    border: 2px solid rgba(255, 255, 255, 0.3);
+                    transition: all var(--transition-fast);
+                    border: 2px solid var(--border-light);
+                    box-shadow: var(--shadow-sm);
 
                     &:hover {
                         transform: scale(1.05);
-                        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+                        box-shadow: var(--shadow-md);
+                        border-color: var(--primary-blue);
                     }
                 }
 
                 .logout-btn {
-                    background: rgba(255, 255, 255, 0.2);
-                    border: 1px solid rgba(255, 255, 255, 0.3);
-                    color: white;
-                    padding: 0.5rem 1rem;
-                    border-radius: 20px;
+                    background: var(--bg-hover);
+                    border: 1px solid var(--border-light);
+                    color: var(--text-secondary);
+                    padding: var(--spacing-2) var(--spacing-4);
+                    border-radius: var(--radius-full);
                     cursor: pointer;
-                    font-size: 0.9rem;
+                    font-size: var(--font-size-sm);
                     font-weight: 500;
-                    transition: all 0.3s ease;
-                    backdrop-filter: blur(10px);
+                    transition: all var(--transition-fast);
+                    box-shadow: var(--shadow-xs);
 
                     &:hover {
-                        background: rgba(255, 255, 255, 0.3);
+                        background: var(--bg-card);
+                        color: var(--text-primary);
+                        border-color: var(--border-medium);
                         transform: translateY(-1px);
+                        box-shadow: var(--shadow-sm);
                     }
                 }
             }
         }
     }
 
-    // Main Content
+    // Main Content - Modern Grid Layout
     .mood-main {
         flex: 1;
-        width: 1200px;
+        max-width: 1200px;
+        width: 100%;
         margin: 0 auto;
         display: grid;
-        grid-template-columns: 300px 1fr 300px;
-        gap: 1.5rem;
-        padding: 1.5rem 1rem;
+        grid-template-columns: 280px 1fr 280px;
+        gap: var(--spacing-6);
+        padding: var(--spacing-6) var(--spacing-4);
+        min-height: calc(100vh - 80px);
 
         // Left Sidebar
         .left-sidebar {
             .user-card {
                 background: var(--bg-card);
-                border-radius: var(--radius-large);
-                padding: 1.5rem;
-                box-shadow: var(--shadow-soft);
+                border-radius: var(--radius-xl);
+                padding: var(--spacing-6);
+                box-shadow: var(--shadow-sm);
                 border: 1px solid var(--border-light);
-                margin-bottom: 1rem;
+                margin-bottom: var(--spacing-4);
+                position: sticky;
+                top: calc(80px + var(--spacing-6));
 
                 .user-info {
                     display: flex;
@@ -253,35 +275,41 @@ body {
                     .user-avatar-large {
                         width: 80px;
                         height: 80px;
-                        border-radius: 50%;
+                        border-radius: var(--radius-full);
                         background: var(--gradient-mixed);
                         display: flex;
                         align-items: center;
                         justify-content: center;
                         color: white;
-                        font-size: 2rem;
+                        font-size: var(--font-size-2xl);
                         font-weight: 700;
-                        margin-bottom: 1rem;
-                        border: 4px solid var(--bg-card);
-                        box-shadow: var(--shadow-medium);
+                        margin-bottom: var(--spacing-4);
+                        border: 3px solid var(--bg-card);
+                        box-shadow: var(--shadow-md);
+                        transition: all var(--transition-fast);
+
+                        &:hover {
+                            transform: scale(1.05);
+                            box-shadow: var(--shadow-lg);
+                        }
                     }
 
                     .user-name {
-                        font-size: 1.2rem;
+                        font-size: var(--font-size-lg);
                         font-weight: 600;
-                        color: #1c1e21;
-                        margin-bottom: 0.5rem;
+                        color: var(--text-primary);
+                        margin-bottom: var(--spacing-2);
                     }
 
                     .user-email {
-                        color: #8a8d91;
-                        font-size: 0.9rem;
+                        color: var(--text-secondary);
+                        font-size: var(--font-size-sm);
+                        margin-bottom: var(--spacing-2);
                     }
 
                     .user-created-at {
-                        color: #8a8d91;
-                        font-size: 0.8rem;
-                        margin-top: 0.5rem;
+                        color: var(--text-light);
+                        font-size: var(--font-size-xs);
                         font-style: italic;
                     }
                 }
@@ -289,23 +317,24 @@ body {
 
             .navigation-menu {
                 background: var(--bg-card);
-                border-radius: 12px;
-                padding: 1rem;
-                box-shadow: var(--shadow-soft);
+                border-radius: var(--radius-xl);
+                padding: var(--spacing-4);
+                box-shadow: var(--shadow-sm);
                 border: 1px solid var(--border-light);
 
                 .nav-item {
                     display: flex;
                     align-items: center;
-                    gap: 0.75rem;
-                    padding: 0.75rem;
-                    border-radius: 8px;
+                    gap: var(--spacing-3);
+                    padding: var(--spacing-3);
+                    border-radius: var(--radius-lg);
                     cursor: pointer;
-                    transition: all 0.3s ease;
-                    margin-bottom: 0.25rem;
+                    transition: all var(--transition-fast);
+                    margin-bottom: var(--spacing-1);
 
                     &:hover {
                         background: var(--bg-hover);
+                        transform: translateX(2px);
                     }
 
                     .nav-icon {
@@ -314,12 +343,14 @@ body {
                         display: flex;
                         align-items: center;
                         justify-content: center;
-                        font-size: 1.2rem;
+                        font-size: var(--font-size-lg);
+                        color: var(--text-secondary);
                     }
 
                     .nav-text {
                         font-weight: 500;
                         color: var(--text-primary);
+                        font-size: var(--font-size-sm);
                     }
                 }
             }
@@ -472,6 +503,9 @@ body {
                         line-height: 1.5;
                         color: var(--text-primary);
                         text-align: start;
+                        white-space: pre-wrap;
+                        word-wrap: break-word;
+                        overflow-wrap: break-word;
                     }
 
                     .post-actions {
@@ -665,19 +699,19 @@ body {
     }
 }
 
-// Responsive Design
+// Modern Responsive Design
 @media (max-width: 1200px) {
     .mood-app .mood-main {
-        width: 100%;
         max-width: 100%;
-        padding: 1rem;
+        padding: var(--spacing-4);
+        gap: var(--spacing-4);
     }
 }
 
 @media (max-width: 1024px) {
     .mood-app .mood-main {
-        grid-template-columns: 250px 1fr;
-        gap: 1rem;
+        grid-template-columns: 260px 1fr;
+        gap: var(--spacing-4);
         
         .right-sidebar {
             display: none;
@@ -687,36 +721,62 @@ body {
 
 @media (max-width: 768px) {
     .mood-app {
-        .mood-header .header-container {
-            flex-wrap: wrap;
-            gap: 1rem;
+        .mood-header {
+            padding: var(--spacing-3) 0;
             
-            .search-section {
-                order: 3;
-                flex: 1 1 100%;
-                max-width: 100%;
-                margin: 0;
-            }
-            
-            .user-section {
-                gap: 0.5rem;
+            .header-container {
+                flex-wrap: wrap;
+                gap: var(--spacing-3);
+                padding: 0 var(--spacing-3);
+                
+                .logo-section .mood-logo {
+                    font-size: var(--font-size-xl);
+                }
+                
+                .search-section {
+                    order: 3;
+                    flex: 1 1 100%;
+                    max-width: 100%;
+                    margin: 0;
+                }
+                
+                .user-section {
+                    gap: var(--spacing-2);
+                    
+                    .user-avatar {
+                        width: 36px;
+                        height: 36px;
+                    }
+                    
+                    .logout-btn {
+                        padding: var(--spacing-2) var(--spacing-3);
+                        font-size: var(--font-size-xs);
+                    }
+                }
             }
         }
 
         .mood-main {
             grid-template-columns: 1fr;
-            gap: 1rem;
-            padding: 1rem 0.5rem;
+            gap: var(--spacing-4);
+            padding: var(--spacing-4) var(--spacing-3);
 
             .left-sidebar {
                 order: 2;
                 
                 .user-card {
-                    padding: 1rem;
+                    padding: var(--spacing-4);
+                    position: static;
+                    
+                    .user-info .user-avatar-large {
+                        width: 60px;
+                        height: 60px;
+                        font-size: var(--font-size-xl);
+                    }
                 }
                 
                 .navigation-menu {
-                    padding: 0.75rem;
+                    padding: var(--spacing-3);
                 }
             }
 
@@ -724,12 +784,12 @@ body {
                 order: 1;
                 
                 .create-post {
-                    padding: 1rem;
+                    padding: var(--spacing-4);
                     
                     .post-input {
                         flex-direction: column;
                         align-items: stretch;
-                        gap: 0.75rem;
+                        gap: var(--spacing-3);
                         
                         .post-textarea {
                             min-height: 80px;
@@ -738,7 +798,7 @@ body {
                     
                     .post-actions {
                         flex-wrap: wrap;
-                        gap: 0.5rem;
+                        gap: var(--spacing-2);
                         
                         .action-btn {
                             flex: 1;
@@ -748,17 +808,17 @@ body {
                 }
                 
                 .feed-posts .post-card {
-                    padding: 1rem;
+                    padding: var(--spacing-4);
                     
                     .post-header {
                         flex-direction: column;
                         align-items: flex-start;
-                        gap: 0.5rem;
+                        gap: var(--spacing-2);
                     }
                     
                     .post-actions {
                         flex-wrap: wrap;
-                        gap: 0.5rem;
+                        gap: var(--spacing-2);
                         
                         .action-btn {
                             flex: 1;
@@ -774,69 +834,79 @@ body {
 
 @media (max-width: 480px) {
     .mood-app {
-        .mood-header .header-container {
-            padding: 0.5rem;
-            flex-direction: column;
-            align-items: stretch;
-            gap: 0.75rem;
+        .mood-header {
+            padding: var(--spacing-2) 0;
+            
+            .header-container {
+                padding: 0 var(--spacing-2);
+                flex-direction: column;
+                align-items: stretch;
+                gap: var(--spacing-3);
 
-            .logo-section {
-                justify-content: center;
-                
-                .mood-logo {
-                    font-size: 1.5rem;
+                .logo-section {
+                    justify-content: center;
+                    
+                    .mood-logo {
+                        font-size: var(--font-size-lg);
+                    }
                 }
-            }
-            
-            .search-section {
-                order: 2;
-            }
-            
-            .user-section {
-                order: 3;
-                justify-content: center;
-                gap: 0.75rem;
+                
+                .search-section {
+                    order: 2;
+                }
+                
+                .user-section {
+                    order: 3;
+                    justify-content: center;
+                    gap: var(--spacing-2);
 
-                .logout-btn {
-                    padding: 0.4rem 0.8rem;
-                    font-size: 0.8rem;
+                    .user-avatar {
+                        width: 32px;
+                        height: 32px;
+                    }
+
+                    .logout-btn {
+                        padding: var(--spacing-2) var(--spacing-3);
+                        font-size: var(--font-size-xs);
+                    }
                 }
             }
         }
 
         .mood-main {
-            padding: 0.5rem;
+            padding: var(--spacing-2);
+            gap: var(--spacing-3);
             
             .left-sidebar {
                 .user-card {
-                    padding: 0.75rem;
+                    padding: var(--spacing-3);
                     
                     .user-info .user-avatar-large {
-                        width: 60px;
-                        height: 60px;
-                        font-size: 1.5rem;
+                        width: 50px;
+                        height: 50px;
+                        font-size: var(--font-size-lg);
                     }
                 }
             }
             
             .main-feed {
                 .create-post {
-                    padding: 0.75rem;
+                    padding: var(--spacing-3);
                     
                     .post-input .user-avatar-small {
                         width: 32px;
                         height: 32px;
-                        font-size: 0.8rem;
+                        font-size: var(--font-size-xs);
                     }
                 }
                 
                 .feed-posts .post-card {
-                    padding: 0.75rem;
+                    padding: var(--spacing-3);
                     
                     .post-header .post-avatar {
                         width: 32px;
                         height: 32px;
-                        font-size: 0.8rem;
+                        font-size: var(--font-size-xs);
                     }
                 }
             }
@@ -1095,7 +1165,9 @@ body {
                     font-size: 0.9rem;
                     line-height: 1.4;
                     text-align: left;
+                    white-space: pre-wrap;
                     word-wrap: break-word;
+                    overflow-wrap: break-word;
                 }
             }
         }
@@ -1275,6 +1347,9 @@ body {
                 color: #1c1e21;
                 font-size: 1.1rem;
                 text-align: start;
+                white-space: pre-wrap;
+                word-wrap: break-word;
+                overflow-wrap: break-word;
             }
             
             .post-image {
@@ -1356,6 +1431,9 @@ body {
                 .post-content {
                     font-size: 1rem;
                     text-align: start;
+                    white-space: pre-wrap;
+                    word-wrap: break-word;
+                    overflow-wrap: break-word;
                 }
                 
                 .post-actions {

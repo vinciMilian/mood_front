@@ -1,74 +1,130 @@
-/* CSS Variables for the Orkut-inspired theme */
+/* Modern CSS Variables - Clean & Sophisticated */
 :root {
-  /* Primary Colors */
-  --primary-blue: #4A90E2;
-  --primary-pink: #E91E63;
+  /* Primary Colors - Modern Palette */
+  --primary-blue: #3B82F6;
+  --primary-purple: #8B5CF6;
+  --primary-pink: #EC4899;
+  --primary-emerald: #10B981;
   --primary-white: #FFFFFF;
   
-  /* Gradient Colors */
-  --gradient-blue: linear-gradient(135deg, #4A90E2 0%, #357ABD 100%);
-  --gradient-pink: linear-gradient(135deg, #E91E63 0%, #C2185B 100%);
-  --gradient-mixed: linear-gradient(135deg, #4A90E2 0%, #E91E63 100%);
-  --gradient-soft: linear-gradient(135deg, #F8F9FA 0%, #E3F2FD 100%);
+  /* Gradient Colors - Subtle & Modern */
+  --gradient-blue: linear-gradient(135deg, #3B82F6 0%, #1D4ED8 100%);
+  --gradient-purple: linear-gradient(135deg, #8B5CF6 0%, #7C3AED 100%);
+  --gradient-pink: linear-gradient(135deg, #EC4899 0%, #DB2777 100%);
+  --gradient-mixed: linear-gradient(135deg, #3B82F6 0%, #8B5CF6 50%, #EC4899 100%);
+  --gradient-soft: linear-gradient(135deg, #F8FAFC 0%, #F1F5F9 100%);
+  --gradient-card: linear-gradient(135deg, #FFFFFF 0%, #F8FAFC 100%);
   
-  /* Light Theme Colors */
-  --bg-primary: #F8F9FA;
+  /* Light Theme Colors - Clean & Minimal */
+  --bg-primary: #FAFBFC;
   --bg-secondary: #FFFFFF;
   --bg-card: #FFFFFF;
-  --bg-hover: #F5F5F5;
+  --bg-hover: #F1F5F9;
+  --bg-subtle: #F8FAFC;
   
-  --text-primary: #2C3E50;
-  --text-secondary: #6C757D;
-  --text-light: #ADB5BD;
+  --text-primary: #0F172A;
+  --text-secondary: #64748B;
+  --text-light: #94A3B8;
   --text-white: #FFFFFF;
+  --text-accent: #3B82F6;
   
-  --border-light: #E9ECEF;
-  --border-medium: #DEE2E6;
-  --border-accent: #4A90E2;
+  --border-light: #E2E8F0;
+  --border-medium: #CBD5E1;
+  --border-accent: #3B82F6;
+  --border-subtle: #F1F5F9;
   
-  --shadow-soft: 0 2px 8px rgba(74, 144, 226, 0.1);
-  --shadow-medium: 0 4px 16px rgba(74, 144, 226, 0.15);
-  --shadow-strong: 0 8px 32px rgba(74, 144, 226, 0.2);
+  /* Modern Shadows - Subtle & Layered */
+  --shadow-xs: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  --shadow-soft: var(--shadow-sm);
+  --shadow-medium: var(--shadow-md);
+  --shadow-strong: var(--shadow-lg);
   
-  /* Border Radius */
-  --radius-small: 6px;
-  --radius-medium: 12px;
-  --radius-large: 20px;
+  /* Border Radius - Modern & Consistent */
+  --radius-xs: 4px;
+  --radius-sm: 6px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+  --radius-2xl: 20px;
+  --radius-full: 9999px;
+  --radius-small: var(--radius-sm);
+  --radius-medium: var(--radius-lg);
+  --radius-large: var(--radius-xl);
   
-  /* Spacing */
-  --spacing-xs: 4px;
-  --spacing-sm: 8px;
-  --spacing-md: 16px;
-  --spacing-lg: 24px;
-  --spacing-xl: 32px;
+  /* Spacing - Consistent Scale */
+  --spacing-0: 0px;
+  --spacing-1: 4px;
+  --spacing-2: 8px;
+  --spacing-3: 12px;
+  --spacing-4: 16px;
+  --spacing-5: 20px;
+  --spacing-6: 24px;
+  --spacing-8: 32px;
+  --spacing-10: 40px;
+  --spacing-12: 48px;
+  --spacing-16: 64px;
+  --spacing-xs: var(--spacing-1);
+  --spacing-sm: var(--spacing-2);
+  --spacing-md: var(--spacing-4);
+  --spacing-lg: var(--spacing-6);
+  --spacing-xl: var(--spacing-8);
+  
+  /* Typography */
+  --font-size-xs: 0.75rem;
+  --font-size-sm: 0.875rem;
+  --font-size-base: 1rem;
+  --font-size-lg: 1.125rem;
+  --font-size-xl: 1.25rem;
+  --font-size-2xl: 1.5rem;
+  --font-size-3xl: 1.875rem;
+  
+  /* Transitions */
+  --transition-fast: 150ms ease;
+  --transition-normal: 250ms ease;
+  --transition-slow: 350ms ease;
 }
 
-/* Dark Theme Variables */
+/* Dark Theme Variables - Modern & Sophisticated */
 .dark-theme {
-  /* Dark Theme Colors */
-  --bg-primary: #0F0F0F;
-  --bg-secondary: #1A1A1A;
-  --bg-card: #1F1F1F;
-  --bg-hover: #2A2A2A;
+  /* Dark Theme Colors - Rich & Deep */
+  --bg-primary: #0A0A0B;
+  --bg-secondary: #111113;
+  --bg-card: #1A1A1D;
+  --bg-hover: #252529;
+  --bg-subtle: #161618;
   
-  --text-primary: #F0F0F0;
-  --text-secondary: #C0C0C0;
-  --text-light: #909090;
+  --text-primary: #F8FAFC;
+  --text-secondary: #94A3B8;
+  --text-light: #64748B;
   --text-white: #FFFFFF;
+  --text-accent: #60A5FA;
   
-  --border-light: #333333;
-  --border-medium: #404040;
-  --border-accent: #5BA0F2;
+  --border-light: #27272A;
+  --border-medium: #3F3F46;
+  --border-accent: #60A5FA;
+  --border-subtle: #1F1F23;
   
-  --shadow-soft: 0 2px 8px rgba(0, 0, 0, 0.4);
-  --shadow-medium: 0 4px 16px rgba(0, 0, 0, 0.5);
-  --shadow-strong: 0 8px 32px rgba(0, 0, 0, 0.6);
+  /* Dark Theme Shadows - Deeper & More Dramatic */
+  --shadow-xs: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
+  --shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.4), 0 1px 2px 0 rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.4), 0 2px 4px -1px rgba(0, 0, 0, 0.3);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.4), 0 4px 6px -2px rgba(0, 0, 0, 0.3);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.4), 0 10px 10px -5px rgba(0, 0, 0, 0.2);
+  --shadow-soft: var(--shadow-sm);
+  --shadow-medium: var(--shadow-md);
+  --shadow-strong: var(--shadow-lg);
   
-  /* Dark Theme Gradients - More vibrant and adapted */
-  --gradient-blue: linear-gradient(135deg, #5BA0F2 0%, #4A90E2 100%);
-  --gradient-pink: linear-gradient(135deg, #FF4081 0%, #E91E63 100%);
-  --gradient-mixed: linear-gradient(135deg, #5BA0F2 0%, #FF4081 100%);
-  --gradient-soft: linear-gradient(135deg, #0F0F0F 0%, #1A1A1A 100%);
+  /* Dark Theme Gradients - Vibrant & Modern */
+  --gradient-blue: linear-gradient(135deg, #60A5FA 0%, #3B82F6 100%);
+  --gradient-purple: linear-gradient(135deg, #A78BFA 0%, #8B5CF6 100%);
+  --gradient-pink: linear-gradient(135deg, #F472B6 0%, #EC4899 100%);
+  --gradient-mixed: linear-gradient(135deg, #60A5FA 0%, #A78BFA 50%, #F472B6 100%);
+  --gradient-soft: linear-gradient(135deg, #0A0A0B 0%, #111113 100%);
+  --gradient-card: linear-gradient(135deg, #1A1A1D 0%, #111113 100%);
 }
 
 * {
@@ -77,13 +133,17 @@
 
 /* Smooth transitions for theme changes */
 *, *::before, *::after {
-  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+  transition: background-color var(--transition-normal), 
+              color var(--transition-normal), 
+              border-color var(--transition-normal), 
+              box-shadow var(--transition-normal),
+              transform var(--transition-fast);
 }
 
 body {
   margin: 0;
   padding: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -91,7 +151,9 @@ body {
   background: var(--bg-primary);
   color: var(--text-primary);
   line-height: 1.6;
-  transition: background-color 0.3s ease, color 0.3s ease;
+  font-size: var(--font-size-base);
+  transition: background-color var(--transition-normal), color var(--transition-normal);
+  overflow-x: hidden;
 }
 
 code {
@@ -103,112 +165,271 @@ code {
   color: var(--primary-blue);
 }
 
-/* Global Button Styles */
+/* Modern Button Styles */
 .btn {
-  padding: var(--spacing-sm) var(--spacing-md);
+  padding: var(--spacing-3) var(--spacing-5);
   border: none;
-  border-radius: var(--radius-medium);
+  border-radius: var(--radius-lg);
   font-weight: 500;
+  font-size: var(--font-size-sm);
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all var(--transition-fast);
   text-decoration: none;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: var(--spacing-sm);
+  gap: var(--spacing-2);
+  position: relative;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left var(--transition-slow);
+}
+
+.btn:hover::before {
+  left: 100%;
 }
 
 .btn-primary {
   background: var(--gradient-blue);
   color: var(--text-white);
-  box-shadow: var(--shadow-soft);
+  box-shadow: var(--shadow-sm);
 }
 
 .btn-primary:hover {
-  transform: translateY(-2px);
-  box-shadow: var(--shadow-medium);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-md);
 }
 
 .btn-secondary {
-  background: var(--gradient-pink);
+  background: var(--gradient-purple);
   color: var(--text-white);
-  box-shadow: var(--shadow-soft);
+  box-shadow: var(--shadow-sm);
 }
 
 .btn-secondary:hover {
-  transform: translateY(-2px);
-  box-shadow: var(--shadow-medium);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-md);
 }
 
 .btn-outline {
   background: transparent;
   color: var(--primary-blue);
-  border: 2px solid var(--primary-blue);
+  border: 1px solid var(--border-accent);
+  box-shadow: var(--shadow-xs);
 }
 
 .btn-outline:hover {
   background: var(--primary-blue);
   color: var(--text-white);
+  border-color: var(--primary-blue);
 }
 
-/* Card Styles */
+.btn-ghost {
+  background: transparent;
+  color: var(--text-secondary);
+  border: 1px solid transparent;
+}
+
+.btn-ghost:hover {
+  background: var(--bg-hover);
+  color: var(--text-primary);
+}
+
+.btn-sm {
+  padding: var(--spacing-2) var(--spacing-3);
+  font-size: var(--font-size-xs);
+  border-radius: var(--radius-md);
+}
+
+.btn-lg {
+  padding: var(--spacing-4) var(--spacing-6);
+  font-size: var(--font-size-lg);
+  border-radius: var(--radius-xl);
+}
+
+/* Modern Card Styles */
 .card {
   background: var(--bg-card);
-  border-radius: var(--radius-large);
-  box-shadow: var(--shadow-soft);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-sm);
   border: 1px solid var(--border-light);
-  transition: all 0.3s ease;
+  transition: all var(--transition-fast);
+  position: relative;
+  overflow: hidden;
+}
+
+.card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: var(--gradient-mixed);
+  opacity: 0;
+  transition: opacity var(--transition-normal);
 }
 
 .card:hover {
-  box-shadow: var(--shadow-medium);
+  box-shadow: var(--shadow-md);
+  transform: translateY(-1px);
+  border-color: var(--border-medium);
+}
+
+.card:hover::before {
+  opacity: 1;
+}
+
+.card-elevated {
+  box-shadow: var(--shadow-md);
+}
+
+.card-elevated:hover {
+  box-shadow: var(--shadow-lg);
   transform: translateY(-2px);
 }
 
-/* Input Styles */
+/* Modern Input Styles */
 .input {
-  padding: var(--spacing-sm) var(--spacing-md);
-  border: 2px solid var(--border-light);
-  border-radius: var(--radius-medium);
+  padding: var(--spacing-3) var(--spacing-4);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-lg);
   background: var(--bg-secondary);
   color: var(--text-primary);
-  transition: all 0.3s ease;
-  font-size: 14px;
+  transition: all var(--transition-fast);
+  font-size: var(--font-size-sm);
+  width: 100%;
 }
 
 .input:focus {
   outline: none;
   border-color: var(--primary-blue);
-  box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.1);
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+  background: var(--bg-card);
 }
 
-/* Scrollbar Styling */
+.input::placeholder {
+  color: var(--text-light);
+}
+
+.input-error {
+  border-color: #EF4444;
+}
+
+.input-error:focus {
+  border-color: #EF4444;
+  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
+}
+
+/* Modern Scrollbar Styling */
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 6px;
+  height: 6px;
 }
 
 ::-webkit-scrollbar-track {
-  background: var(--bg-hover);
+  background: var(--bg-subtle);
+  border-radius: var(--radius-full);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--gradient-blue);
-  border-radius: 4px;
+  background: var(--border-medium);
+  border-radius: var(--radius-full);
+  transition: background var(--transition-fast);
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--gradient-pink);
+  background: var(--text-light);
+}
+
+/* Firefox scrollbar */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--border-medium) var(--bg-subtle);
+}
+
+/* Utility Classes */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--spacing-4);
+}
+
+.flex {
+  display: flex;
+}
+
+.flex-col {
+  flex-direction: column;
+}
+
+.items-center {
+  align-items: center;
+}
+
+.justify-center {
+  justify-content: center;
+}
+
+.justify-between {
+  justify-content: space-between;
+}
+
+.gap-2 {
+  gap: var(--spacing-2);
+}
+
+.gap-3 {
+  gap: var(--spacing-3);
+}
+
+.gap-4 {
+  gap: var(--spacing-4);
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-sm {
+  font-size: var(--font-size-sm);
+}
+
+.text-lg {
+  font-size: var(--font-size-lg);
+}
+
+.font-medium {
+  font-weight: 500;
+}
+
+.font-semibold {
+  font-weight: 600;
+}
+
+.font-bold {
+  font-weight: 700;
 }
 
 /* Mobile-specific improvements */
 @media (max-width: 768px) {
   body {
-    font-size: 14px;
+    font-size: var(--font-size-sm);
   }
   
   .btn {
-    padding: var(--spacing-sm) var(--spacing-sm);
-    font-size: 14px;
+    padding: var(--spacing-2) var(--spacing-3);
+    font-size: var(--font-size-sm);
   }
   
   .input {
@@ -216,22 +437,30 @@ code {
   }
   
   .card {
-    border-radius: var(--radius-medium);
+    border-radius: var(--radius-lg);
+  }
+  
+  .container {
+    padding: 0 var(--spacing-3);
   }
 }
 
 @media (max-width: 480px) {
   body {
-    font-size: 13px;
+    font-size: var(--font-size-sm);
   }
   
   .btn {
-    padding: var(--spacing-xs) var(--spacing-sm);
-    font-size: 13px;
+    padding: var(--spacing-2) var(--spacing-3);
+    font-size: var(--font-size-xs);
   }
   
   .card {
-    border-radius: var(--radius-small);
+    border-radius: var(--radius-md);
+  }
+  
+  .container {
+    padding: 0 var(--spacing-2);
   }
 }
 
@@ -246,5 +475,37 @@ code {
   .btn:active,
   .action-button:active {
     transform: scale(0.98);
+  }
+  
+  .btn::before {
+    display: none;
+  }
+}
+
+/* Focus styles for accessibility */
+.btn:focus-visible,
+.input:focus-visible {
+  outline: 2px solid var(--primary-blue);
+  outline-offset: 2px;
+}
+
+/* Loading states */
+.loading {
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+.skeleton {
+  background: linear-gradient(90deg, var(--bg-hover) 25%, var(--bg-subtle) 50%, var(--bg-hover) 75%);
+  background-size: 200% 100%;
+  animation: loading 1.5s infinite;
+}
+
+@keyframes loading {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
   }
 }

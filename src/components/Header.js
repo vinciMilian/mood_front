@@ -91,7 +91,7 @@ function Header({ user, onLogout }) {
 
     return (
         <header className="mood-header">
-            <div className="header-container" style={{ height: '30px' }}>
+            <div className="header-container">
                 <div className="logo-section">
                     <a href="#" className="mood-logo">mood</a>
                 </div>
@@ -103,8 +103,6 @@ function Header({ user, onLogout }) {
                         placeholder="Pesquisar no Mood..."
                         value={searchQuery}
                         onChange={handleSearchChange}
-
-                        style={{ height: '30px', color: 'black' }}
                     />
                     
                     {/* Search Results Dropdown */}
@@ -180,7 +178,7 @@ function Header({ user, onLogout }) {
                             getUserInitial()
                         )}
                     </div>
-                    <button className="logout-btn" onClick={onLogout}>
+                    <button className="logout-btn btn btn-ghost btn-sm" onClick={onLogout}>
                         Sair
                     </button>
                 </div>
